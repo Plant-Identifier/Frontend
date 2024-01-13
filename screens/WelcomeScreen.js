@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, Text, Button, Image, StyleSheet, FlatList, Dimensions, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { IMAGES } from '../constants/images';
+import { constants } from 'buffer';
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
 
 
   const illustrations = [
-    { id: 1, source: require('../assets/plant-images/Alfala.png') },
-    { id: 2, source: require('../assetsl/plant-images/Asparagus.png') },
-    { id: 3, source: require('../assets/plant-images/Alfala.png') },
+    { id: 1, source: require('../plant-images/Alfalfa.png') },
+    { id: 2, source: require('../plant-images/Alfalfa.png') },
+    { id: 3, source: require('../plant-images/Alfalfa.png') },
   ];
 
   const scrollX = new Animated.Value(0);
