@@ -7,8 +7,7 @@ const colors = {
     white: "#FFFFFF",
     gray: "#9DA3B4",
     gray2: "#C5CCD6",
-    lightgreen: "#E3F6E1",
-    green: "#A4AF91"
+    lightGreen: "#E3F6E1"
   };
   
   const sizes = {
@@ -51,3 +50,5 @@ const colors = {
       fontSize: sizes.caption
     }
   };
+  
+  export { colors, sizes, fonts };
