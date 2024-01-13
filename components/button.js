@@ -10,6 +10,7 @@ export default function Button(props) {
   );
 }
 
+// Style for the button
 const styles = StyleSheet.create({
     button: {
       alignItems: 'center',
