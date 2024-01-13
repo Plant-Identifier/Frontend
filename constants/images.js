@@ -16,7 +16,7 @@ export const IMAGES = {
     CrimsonClover: require('../plant-images/CrimsonClover.png'),
     CurlyDock: require('../plant-images/CurlyDock.png'),
     DaisyFleabane: require('../plant-images/DaisyFleabane.png'),
-    Dandellion: require('../plant-images/Dandellion.png'),
+    Dandelion: require('../plant-images/Dandelion.png'),
     DownyYellowViolet: require('../plant-images/DownyYellowViolet.png'),
     Elderberry: require('../plant-images/Elderberry.png'),
     EveningPrimrose: require('../plant-images/EveningPrimrose.png'),
@@ -29,7 +29,7 @@ export const IMAGES = {
     Henbit: require('../plant-images/Henbit.png'),
     HerbRobert: require('../plant-images/HerbRobert.png'),
     JapaneseKnotweed: require('../plant-images/JapaneseKnotweed.png'),
-    JoePyeWeed: require('../plant-images/JoePyeWeed.png'),
+    JoePyeWeed: require('../plant-images/Joe-PyeWeed.png'),
     Knapweed: require('../plant-images/Knapweed.png'),
     Kudzu: require('../plant-images/Kudzu.png'),
     LambsQuarters: require('../plant-images/LambsQuarters.png'),
@@ -60,5 +60,5 @@ export const IMAGES = {
     WildBlackCherry: require('../plant-images/WildBlackCherry.png'),
     WildGrapeVine: require('../plant-images/WildGrapeVine.png'),
     WildLeek: require('../plant-images/WildLeek.png'),
-    WoodSorrel: require('../plant-images/WoodSorrel.png')
+    WoodSorrel: require('../plant-images/WoodSorrel.png'),
 }

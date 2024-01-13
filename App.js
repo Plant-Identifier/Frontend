@@ -18,7 +18,7 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Welcome" component={WelcomeScreen} />
         <Tab.Screen name="Camera" component={CameraScreen} />
-        <Tab.Screen name="Collection" component={CollectionScreen} />
+        <Tab.Screen name="FloraDex" component={CollectionScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
