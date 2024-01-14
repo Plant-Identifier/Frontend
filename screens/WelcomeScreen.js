@@ -1,9 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, Dimensions, Animated, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {
+  useFonts,
+  SpaceMono_400Regular,
+  SpaceMono_400Regular_Italic,
+  SpaceMono_700Bold,
+  SpaceMono_700Bold_Italic,
+} from '@expo-google-fonts/space-mono';
+
+import { Lemon_400Regular } from '@expo-google-fonts/lemon';
+
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
+
+  const [fontsLoaded] = useFonts({
+    SpaceMono_400Regular,
+    SpaceMono_400Regular_Italic,
+    SpaceMono_700Bold,
+    SpaceMono_700Bold_Italic,
+    Lemon_400Regular,
+  });
+
+  if (!fontsLoaded) return  <Text style={styles.welcomeText}>Welcome to WhatTheFlora!</Text>
+
 
   const illustrations = [
     { id: 1, source: require('../plant-images/Alfalfa.png') },
@@ -14,7 +35,7 @@ const WelcomeScreen = () => {
   const scrollX = new Animated.Value(0);
 
   const goToHomeScreen = () => {
-    navigation.navigate('TabNavigator', { screen: 'HomeScreen' });
+    navigation.navigate('TabNavigator', { screen: 'FloraHome' });
   };
 
   const renderIllustration = ({ item }) => (
@@ -78,10 +99,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#E3F6E1',
   },
   welcomeText: {
+    fontFamily: 'SpaceMono_700Bold',
     fontSize: 24,
     marginBottom: 5,
     marginVertical: 150,
-    fontFamily: 'CuteFont', // Replace with the actual font family you want to use
   },
   illustrationContainer: {
     width: width - 8, // Adjust the width to make it smaller
@@ -116,9 +137,9 @@ const styles = StyleSheet.create({
     bottom: 100, // Adjust the position
   },
   getStartedButtonText: {
+    fontFamily: 'SpaceMono_700Bold',
     color: 'white',
-    fontSize: 18,
-    fontFamily: 'CuteFont', // Replace with the actual font family you want to use
+    fontSize: 28,
   },
 });
 

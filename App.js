@@ -5,8 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
-import { AppLoading } from 'expo'; // Add this import
 
 import CameraScreen from './screens/CameraScreen';
 import CollectionScreen from './screens/CollectionScreen';
@@ -30,7 +28,7 @@ const MainStack = () => (
 const BottomTabNavigator = () => (
       <Tab.Navigator>
         <Tab.Screen
-          name="Camera"
+          name="FloraScout"
           component={CameraScreen}
           options={{
             tabBarIcon: ({ focused, color, size }) => (
@@ -43,7 +41,7 @@ const BottomTabNavigator = () => (
           }}
         />
         <Tab.Screen
-          name="HomeScreen"
+          name="FloraHome"
           component={HomeScreen}
           options={{
             tabBarIcon: ({ focused, color, size }) => (
@@ -72,14 +70,6 @@ const BottomTabNavigator = () => (
   );
 
   export default function App() {
-    // const [fontsLoaded, error] = useFonts({
-    //   'PixelifySans-Regular': require('./assets/myFonts/PixelifySans-Regular.ttf'),
-    //   // Add other font weights/styles if needed
-    // });
-  
-    // if (!fontsLoaded) {
-    //   return <AppLoading />;
-    // }
   
     return (
       <NavigationContainer>
