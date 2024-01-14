@@ -1,19 +1,21 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Welcome to Your Home</Text>
       <Text style={styles.subHeading}>Enjoy the Green Experience!</Text>
-      <Button
-        title="Explore More"
-        onPress={() => {
-          // Navigate to other screens or perform actions
-          // For simplicity, we're using a button to simulate navigation
-          alert("Button Pressed!");
+      <Image
+        source = {require("../plant-images/FloraFriend.png")}
+        style = {{
+          width: 180,
+          height: 180,
+          borderRadius: 100,
+          marginBottom: 20
         }}
-      />
+      ></Image>
+      <Text>You are a Level 1 Flora Friend!</Text>
     </View>
   );
 };
