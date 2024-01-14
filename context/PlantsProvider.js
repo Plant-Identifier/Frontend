@@ -6,11 +6,11 @@ const PlantsProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
 
   const addPlant = plant => {
-    setPlants(currentPlants => [...currentPlants, plant]);
+    setPlants([...plants, plant]);
   };
 
   const removePlant = plantId => {
-    setPlants(currentPlants => currentPlants.filter(plant => plant.id !== plantId));
+    setPlants(plants.filter(plant => plant.id !== plantId));
   };
 
   return (

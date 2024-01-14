@@ -55,6 +55,7 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
             
             console.log(responseData);
             addPlant(responseData)
+            console.log(plants)
         } catch (error) {
             console.error("Error sending to backend", error);
         }
