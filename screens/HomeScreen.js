@@ -7,7 +7,7 @@ const HomeScreen = ({ navigation }) => {
       <Text style={styles.heading}>Welcome to Your Home</Text>
       <Text style={styles.subHeading}>Enjoy the Green Experience!</Text>
       <Image
-        source = {require("../plant-images/FloraFriend.png")}
+        source = {require("../assets/FloraFriend.png")}
         style = {{
           width: 180,
           height: 180,
