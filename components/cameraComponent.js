@@ -42,7 +42,7 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
     if (isLoading) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#0000ff" />
+                <ActivityIndicator size="large" color="#A4AF91" />
             </View>
         );
     }
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderRadius: 50,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
     },
     button: {
         position: 'absolute', 
@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderRadius: 50,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
     },
     text: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white',
+        color: '#A4AF91',
     },
     loadingContainer: {
         flex: 1,

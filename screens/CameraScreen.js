@@ -31,6 +31,7 @@ const CameraScreen = () => {
             source={{ uri: 'https://static.vecteezy.com/system/resources/previews/012/450/943/original/vintage-8-bit-camera-pixel-art-illustration-of-camera-cross-stitch-pattern-vector.jpg' }}
             style={styles.buttonImage}
           />
+          <Text style={styles.buttonText}>CLICK TO SCOUT</Text>
         </TouchableOpacity>
       )}
       {cameraOpen && <CameraComponent hasCameraPermission={hasPermission} onBackButtonPress={handleBackButtonPress} />}
@@ -49,13 +50,18 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'center',
-    bottom: -300,
+    bottom: -280,
     alignSelf: 'center',
   },
   buttonImage: {
-    width: 100, // Adjust the width as needed
-    height: 100, // Adjust the height as needed
+    width: 150, // Adjust the width as needed
+    height: 150, // Adjust the height as needed
   },
+  buttonText: {
+    fontSize: 18,
+      fontWeight: "bold",
+      fontFamily: 'SpaceMono_700Bold',
+    },
 });
 
 export default CameraScreen;
