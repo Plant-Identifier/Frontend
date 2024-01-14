@@ -1,5 +1,4 @@
 import {  default as React, useContext, useRef, useState } from 'react';
-import { useContext, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Plant from '../components/Plant';
 import Slideup from '../components/Slideup';
