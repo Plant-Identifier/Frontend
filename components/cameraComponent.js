@@ -1,6 +1,6 @@
-import React, {useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
+import React, { useRef, useState } from 'react';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 
 const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
 
@@ -20,6 +20,10 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
                 // Saves photo locally (this url could be sent to the backend)
                 const localUri = photo.uri;
                 console.log(localUri);
+
+                // encode in base64 string or cloud s3 google bucket amazon aws
+
+                // instead of alert, call backend & pull up slide up component to display info
                 Alert.alert("Success", "Picture taken successfully!");
             } catch (error) {
                 Alert.alert("Error", "Failed to take picture: " + error.message);

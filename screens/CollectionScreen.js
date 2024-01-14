@@ -34,7 +34,8 @@ const CollectionScreen = () => {
           </TouchableOpacity>
         ))}
     <Slideup
-            clicked = {touched}/>
+            clicked = {touched}
+            setClicked = {setTouched}/>
     </ScrollView>
   );
 };

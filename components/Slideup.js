@@ -18,9 +18,9 @@ export default function Slideup(props){
 
     useEffect(() => {
         Animated.timing(translateY, {
-            toValue: 0,  // Slide up to 0 (the top of the screen)
-            duration: 500, // Duration of the animation
-            useNativeDriver: true, // Use native driver for better performance
+            toValue: 0,
+            duration: 500,
+            useNativeDriver: true,
           }).start();
     }, [translateY])
 
@@ -32,7 +32,7 @@ export default function Slideup(props){
             },
           ]}>
             <TouchableOpacity
-                onPress = {() => {props.clicked = false}}>
+                onPress = {() => {props.setClicked(false)}}>
                 <Text>Testing</Text>
             </TouchableOpacity>
         </Animated.View>
