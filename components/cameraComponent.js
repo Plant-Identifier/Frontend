@@ -1,7 +1,7 @@
 import { Camera } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
 import React, { useContext, useRef, useState } from 'react';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import PlantsContext from "../context/PlantsContext";
 
 const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
@@ -12,6 +12,9 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
     // Tracks state of captured picture 
     const [picture, setPicture] = useState(null);
 
+    // New state for loading indicator
+    const [isLoading, setIsLoading] = useState(false);
+
     const takePicture = async () => {
         // Checks if the camera is ready
         if (cameraRef.current) {
@@ -19,16 +22,31 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
                 // Takes the pictures 
                 const photo = await cameraRef.current.takePictureAsync();
                 setPicture(photo);
+
+                 // Start loading page
+                setIsLoading(true);
                
                 encodeImage(photo.uri)
 
                 // instead of alert, call backend & pull up slide up component to display info
-                Alert.alert("Success", "Picture taken successfully!");
+                //Alert.alert("Success", "Picture taken successfully!");
+
             } catch (error) {
                 Alert.alert("Error", "Failed to take picture: " + error.message);
+                setIsLoading(false);
             }
         }
     };
+
+    // Render loading screen when isLoading is true
+    if (isLoading) {
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+        );
+    }
+
 
     const encodeImage = async (imageUri) => {
         try {
@@ -50,8 +68,12 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
                 },
                 body: JSON.stringify({ image: encodedImage }),
             });
-            alert("Processing Your Plant!")
             const responseData = await response.text();
+            alert("Your plant is a " + responseData)
+
+            // Stop loading page
+            setIsLoading(false);
+            
             
             console.log(responseData);
             addPlant(responseData)
@@ -114,5 +136,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: 'white',
-        },
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 });
