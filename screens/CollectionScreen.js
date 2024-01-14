@@ -14,7 +14,7 @@ const CollectionScreen = () => {
   async function fetchData(plant) {
     try {
       const response = await fetch(
-        `https://2ce4-135-0-32-136.ngrok-free.app/getInfo?Type=${plant}`
+        `https://2a2c-129-100-255-25.ngrok-free.app/getInfo?Type=${plant}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

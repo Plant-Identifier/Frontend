@@ -61,7 +61,7 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
 
     const sendBack = async (encodedImage) => {
         try {
-            const response = await fetch('https://2ce4-135-0-32-136.ngrok-free.app/upload', {
+            const response = await fetch('https://2a2c-129-100-255-25.ngrok-free.app/upload', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
