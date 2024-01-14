@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Animated, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Slideup(props){
     const screenHeight = Dimensions.get('window').height;
@@ -16,21 +16,25 @@ export default function Slideup(props){
         },
       });
 
-    useEffect(() => {
-    if (props.clicked) {
-        Animated.timing(translateY, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true,
-        }).start();
-    } else {
-        Animated.timing(translateY, {
-            toValue: screenHeight,
-            duration: 500,
-            useNativeDriver: true,
-        }).start();
-    }
-}, [props.clicked, screenHeight, translateY]);
+      useEffect(() => {
+        let animationTimeout;
+
+        if (props.clicked) {
+            animationTimeout = setTimeout(() => {
+                Animated.timing(translateY, {
+                    toValue: 0,
+                    duration: 500,
+                    useNativeDriver: true,
+                }).start();
+            }, 1000); // Delay of 1000 ms before starting the animation
+        }
+
+        return () => {
+            if (animationTimeout) {
+                clearTimeout(animationTimeout);
+            }
+        };
+    }, [props.clicked, translateY]);
 
     return props.clicked ? (
         <Animated.View style={[
@@ -41,6 +45,9 @@ export default function Slideup(props){
           ]}>
             <TouchableOpacity
                 onPress = {() => {props.setClicked(false)}}>
+                <Text>{props.name}</Text>
+                <Image
+                  source={props.imgSrc}></Image>
                 <Text>{props.description}</Text>
             </TouchableOpacity>
         </Animated.View>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Plant from '../components/Plant';
 import Slideup from '../components/Slideup';
@@ -6,6 +6,9 @@ import { IMAGES } from '../constants/images';
 import PlantsContext from '../context/PlantsContext';
 
 const CollectionScreen = () => {
+  const scrollViewRef = useRef();
+  const [plantName, setPlantName] = useState("")
+  const [plantImg, setPlantImg] = useState("")
   const { plants, addPlant, removePlant } = useContext(PlantsContext);
 
   async function fetchData(plant) {
@@ -30,10 +33,12 @@ const CollectionScreen = () => {
   const [desc, setDesc] = useState('');
   const [touched, setTouched] = useState(false);
 
-  const handlePress = (plantName) => {
-    console.log(plants)
+  const handlePress = async (plantName) => {
+    console.log(IMAGES[key])
     const search = plantName.split(/(?=[A-Z])/).join('%20');
-    fetchData(search);
+    await fetchData(search);
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true});
+    setPlantName(plantName)
     setTouched(!touched);
   };
 
@@ -56,6 +61,7 @@ const CollectionScreen = () => {
 
   return (
     <ScrollView
+      ref = {scrollViewRef}
       style={styles.scrollView}
       contentContainerStyle={styles.contentContainer}
       bouncesZoom={false}
@@ -64,13 +70,15 @@ const CollectionScreen = () => {
     >
       {Object.keys(IMAGES).map((key) => (
         <TouchableOpacity key={key} onPress={() => handlePress(key)}>
-          <Plant imgSrc={IMAGES[key]} name={key} />
+          <Plant imgSrc={IMAGES[key]} name={key}/>
         </TouchableOpacity>
       ))}
       <Slideup
         clicked={touched}
         setClicked={setTouched}
+        name={plantName}
         description={desc}
+        imgSrc={plantImg}
         style={styles.descriptionText} // Apply the custom style
       />
     </ScrollView>
