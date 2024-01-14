@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import PlantsContext from "../context/PlantsContext";
 
 const HomeScreen = ({ navigation }) => {
+  const { plants, addPlant, removePlant } = useContext(PlantsContext)
+  const numPlants = plants.length + 1;
+
+  const [ floraTitle, setFloraTitle ] = useState("")
+
+  useEffect(() => {
+    if(numPlants == 1){
+      setFloraTitle("Novice")
+    } else if (numPlants <= 10){
+      setFloraTitle("Beginner")
+    } else if (numPlants <= 20){
+      setFloraTitle("Experienced")
+    } else if (numPlants <= 45){
+      setFloraTitle("Advanced")
+    } else {
+      setFloraTitle("Master")
+    }
+  }, [])
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Welcome to Your Home</Text>
@@ -15,7 +35,8 @@ const HomeScreen = ({ navigation }) => {
           marginBottom: 20
         }}
       ></Image>
-      <Text>You are a Level 1 Flora Friend!</Text>
+      <Text>You are a Level {numPlants} Flora Friend!</Text>
+      <Text>You are a {floraTitle}!</Text>
     </View>
   );
 };
