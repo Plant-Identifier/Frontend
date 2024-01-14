@@ -11,7 +11,6 @@ import { Animated, Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, Vie
 
 import { Lemon_400Regular } from '@expo-google-fonts/lemon';
 
-
 const WelcomeScreen = () => {
   const navigation = useNavigation();
 
@@ -23,8 +22,7 @@ const WelcomeScreen = () => {
     Lemon_400Regular,
   });
 
-  if (!fontsLoaded) return  <Text style={styles.welcomeText}>Welcome to WhatTheFlora!</Text>
-
+  if (!fontsLoaded) return <Text style={styles.welcomeText}>Welcome to WhatTheFlora!</Text>;
 
   const illustrations = [
     { id: 1, source: require('../plant-images/Fireweed.png') },
@@ -100,26 +98,26 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontFamily: 'SpaceMono_700Bold',
-    fontSize: 20,
+    fontSize: 25,
     marginBottom: 5,
-    marginVertical: 150,
+    marginVertical: height / 8, // Adjusted for responsiveness
   },
   illustrationContainer: {
-    width: width - 8, // Adjust the width to make it smaller
+    width: width - 8,
     height: height / 4,
-    marginVertical: 135, // Adjust the margin to move it down
+    marginVertical: height / 5,
   },
   illustration: {
     flex: 1,
     width: null,
     height: null,
     alignSelf: 'stretch',
-    borderRadius: 30, // Add border radius to make it round
+    borderRadius: 30,
   },
   paginationContainer: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 20,
+    bottom: height / 12, // Adjusted for responsiveness
   },
   dot: {
     width: 10,
@@ -130,11 +128,11 @@ const styles = StyleSheet.create({
   },
   getStartedButton: {
     backgroundColor: '#A4AF91',
-    borderRadius: 25, // Make it round
+    borderRadius: 25,
     paddingVertical: 15,
     paddingHorizontal: 30,
     position: 'absolute',
-    bottom: 100, // Adjust the position
+    bottom: height / 4, // Adjusted for responsiveness
   },
   getStartedButtonText: {
     fontFamily: 'SpaceMono_700Bold',

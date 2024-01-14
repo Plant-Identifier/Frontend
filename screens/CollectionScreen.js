@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import { default as React, default as React, useContext, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Plant from '../components/Plant';
 import Slideup from '../components/Slideup';
@@ -42,23 +42,6 @@ const CollectionScreen = () => {
     setTouched(!touched);
   };
 
-  const styles = StyleSheet.create({
-    contentContainer: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      padding: 10,
-    },
-    scrollView: {
-      backgroundColor: '#E3F6E1', // Light green background color
-    },
-    descriptionText: {
-      fontSize: 18, // Adjust the font size
-      padding: 10, // Add padding for better formatting
-    },
-  });
-
   return (
     <ScrollView
       ref = {scrollViewRef}
@@ -66,7 +49,11 @@ const CollectionScreen = () => {
       contentContainerStyle={styles.contentContainer}
       bouncesZoom={false}
       directionalLockEnabled={true}
-      contentOffset={{ x: 0, y: 0 }} // Ensure scroll starts at the top
+      contentOffset={{ x: 0, y: 0 }}
+      onLayout={(event) => {
+        const { width, height } = event.nativeEvent.layout;
+        console.log('New dimensions:', width, height);
+      }}
     >
       {Object.keys(IMAGES).map((key) => (
         <TouchableOpacity key={key} onPress={() => handlePress(key)}>
@@ -84,5 +71,37 @@ const CollectionScreen = () => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    padding: 10,
+    width: '100%',
+  },
+  scrollView: {
+    backgroundColor: '#E3F6E1',
+  },
+  descriptionText: {
+    fontSize: 18,
+    padding: 10,
+  },
+  plantContainer: {
+    width: '30%',
+    margin: 5,
+    alignItems: 'center',
+  },
+  plantImage: {
+    width: '100%',
+    height: 150,
+    borderRadius: 10,
+  },
+  plantName: {
+    marginTop: 5,
+    fontSize: 16,
+  },
+});
 
 export default CollectionScreen;
