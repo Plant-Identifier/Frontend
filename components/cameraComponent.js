@@ -61,7 +61,7 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
 
     const sendBack = async (encodedImage) => {
         try {
-            const response = await fetch('https://6f89-2605-8d80-682-2c53-649e-56fd-73f5-9971.ngrok-free.app/upload', {
+            const response = await fetch('https://2ce4-135-0-32-136.ngrok-free.app/upload', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,15 +69,16 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
                 body: JSON.stringify({ image: encodedImage }),
             });
             const responseData = await response.text();
-            alert("Your plant is a " + responseData)
+            
+            if (responseData.toLowerCase().includes("error")) {
+                alert("Error: We could not determine the plant. Try again!");
+            } else {
+                alert("Your plant is a " + responseData);
+                addPlant(responseData);
+            }
 
             // Stop loading page
             setIsLoading(false);
-            
-            
-            console.log(responseData);
-            addPlant(responseData)
-            console.log(plants)
         } catch (error) {
             console.error("Error sending to backend", error);
         }

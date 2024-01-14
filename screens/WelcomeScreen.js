@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontFamily: 'SpaceMono_700Bold',
-    fontSize: 25,
+    fontSize: 20,
     marginBottom: 5,
     marginVertical: height / 8, // Adjusted for responsiveness
   },
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   getStartedButtonText: {
     fontFamily: 'SpaceMono_700Bold',
     color: 'white',
-    fontSize: 28,
+    fontSize: 24,
   },
 });
 
