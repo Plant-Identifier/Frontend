@@ -1,8 +1,31 @@
-import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import React, {useRef, useState } from 'react';
+import { View, Text, Pressable, StyleSheet, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 
 const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
+
+    // Reference for the camera 
+    const cameraRef = useRef(null);
+    // Tracks state of captured picture 
+    const [picture, setPicture] = useState(null);
+
+    const takePicture = async () => {
+        // Checks if the camera is ready
+        if (cameraRef.current) {
+            try {
+                // Takes the pictures 
+                const photo = await cameraRef.current.takePictureAsync();
+                setPicture(photo);
+               
+                // Saves photo locally (this url could be sent to the backend)
+                const localUri = photo.uri;
+                console.log(localUri);
+                Alert.alert("Success", "Picture taken successfully!");
+            } catch (error) {
+                Alert.alert("Error", "Failed to take picture: " + error.message);
+            }
+        }
+    };
 
     // If camera permission hasn't been accepted or denied yet (null), render nothing
     if (hasCameraPermission === null) {
@@ -14,12 +37,16 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
         return <Text>No access to camera. Please change camera access in your settings.</Text>;
     }
 
-    // If camera permission has been accepted, render the camera and the back button
+    // If camera permission has been accepted, render the camera, take picture button, and the back button
     return (
         <View style={{ flex: 1 }}>
-            <Camera style={{ flex: 1 }} type={Camera.Constants.Type.back} />
+            <Camera style={{ flex: 1 }} type={Camera.Constants.Type.back} ref={cameraRef} />
 
-            <Pressable style={styles.button} onPress={onBackButtonPress}>
+            <Pressable style={styles.button} onPress={takePicture}>
+                <Text style={styles.text}>Take Picture</Text>
+            </Pressable>
+
+            <Pressable style={styles.backButton} onPress={onBackButtonPress}>
                 <Text  style={styles.text} >Back</Text>
             </Pressable>
             
@@ -31,10 +58,19 @@ export default CameraComponent;
 
 // Styling for the back button 
 const styles = StyleSheet.create({
-    button: {
+    backButton: {
         position: 'absolute', 
         top: 20, 
         left: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        borderRadius: 50,
+        backgroundColor: 'black',
+    },
+    button: {
+        position: 'absolute', 
+        bottom: 20, 
+        alignSelf: 'center',
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderRadius: 50,
