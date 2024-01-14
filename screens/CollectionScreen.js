@@ -31,6 +31,7 @@ const CollectionScreen = () => {
   const [touched, setTouched] = useState(false);
 
   const handlePress = (plantName) => {
+    console.log(plants)
     const search = plantName.split(/(?=[A-Z])/).join('%20');
     fetchData(search);
     setTouched(!touched);
