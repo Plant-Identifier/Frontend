@@ -1,28 +1,25 @@
 import React from 'react';
-import { View, Text, Button, Image, StyleSheet, FlatList, Dimensions, Animated } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Dimensions, Animated, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { IMAGES } from '../constants/images';
-import { constants } from 'buffer';
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
 
-
   const illustrations = [
     { id: 1, source: require('../plant-images/Alfalfa.png') },
-    { id: 2, source: require('../plant-images/Alfalfa.png') },
-    { id: 3, source: require('../plant-images/Alfalfa.png') },
+    { id: 2, source: require('../plant-images/PineappleWeed.png') },
+    { id: 3, source: require('../plant-images/Sunflower.png') },
   ];
 
   const scrollX = new Animated.Value(0);
 
-  const goToCameraScreen = () => {
-    navigation.navigate('Camera');
+  const goToHomeScreen = () => {
+    navigation.navigate('TabNavigator', { screen: 'HomeScreen' });
   };
 
   const renderIllustration = ({ item }) => (
     <View style={styles.illustrationContainer}>
-      <Image
+      <Animated.Image
         source={item.source}
         resizeMode="contain"
         style={styles.illustration}
@@ -46,10 +43,8 @@ const WelcomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Welcome text and other welcome-related components */}
-      <Text>Welcome to WhatTheFlora!</Text>
+      <Text style={styles.welcomeText}>Welcome to WhatTheFlora!</Text>
 
-      {/* Horizontal slide view with plant images */}
       <FlatList
         horizontal
         pagingEnabled
@@ -60,15 +55,15 @@ const WelcomeScreen = () => {
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
       />
 
-      {/* Pagination dots */}
       {renderPagination()}
 
-      {/* Light green "Get Started" button */}
-      <Button
-        title="Get Started"
-        onPress={goToCameraScreen}
-        color="#7FFF00" // Light green color
-      />
+      {/* New Round "Get Started" Button */}
+      <TouchableOpacity
+        onPress={goToHomeScreen}
+        style={styles.getStartedButton}
+      >
+        <Text style={styles.getStartedButtonText}>Get Started</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -80,16 +75,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#E3F6E1',
+  },
+  welcomeText: {
+    fontSize: 24,
+    marginBottom: 5,
+    marginVertical: 150,
+    fontFamily: 'CuteFont', // Replace with the actual font family you want to use
   },
   illustrationContainer: {
-    width,
-    height: height / 2,
+    width: width - 8, // Adjust the width to make it smaller
+    height: height / 4,
+    marginVertical: 135, // Adjust the margin to move it down
   },
   illustration: {
     flex: 1,
     width: null,
     height: null,
     alignSelf: 'stretch',
+    borderRadius: 30, // Add border radius to make it round
   },
   paginationContainer: {
     flexDirection: 'row',
@@ -102,6 +106,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#888',
     marginHorizontal: 5,
+  },
+  getStartedButton: {
+    backgroundColor: '#A4AF91',
+    borderRadius: 25, // Make it round
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    position: 'absolute',
+    bottom: 100, // Adjust the position
+  },
+  getStartedButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontFamily: 'CuteFont', // Replace with the actual font family you want to use
   },
 });
 
