@@ -1,17 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Button from '../components/button';
 import CameraComponent from '../components/cameraComponent';
 import { Camera } from 'expo-camera';
 
 const CameraScreen = () => {
-
-  // Tracks whether or not the device has access to the camera 
   const [hasPermission, setHasPermission] = useState(null);
-  // Tracks whether or not the camera is open
-  const [cameraOpen, setCameraOpen] = useState(false)
+  const [cameraOpen, setCameraOpen] = useState(false);
 
-  // Requests camera permissions when the component mounts
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -19,22 +16,47 @@ const CameraScreen = () => {
     })();
   }, []);
 
-  // Opens the camera when the upload button is pressed
   const handleButtonPress = () => {
     setCameraOpen(true);
   };
 
-  // Returns to the previous page when the back button is pressed
   const handleBackButtonPress = () => {
     setCameraOpen(false);
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      {!cameraOpen && <Button onPress={handleButtonPress} title="Upload Plant"/>}
+    <View style={styles.container}>
+      {!cameraOpen && (
+        <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
+          <Text style={styles.buttonText}>Upload Plant</Text>
+        </TouchableOpacity>
+      )}
       {cameraOpen && <CameraComponent hasCameraPermission={hasPermission} onBackButtonPress={handleBackButtonPress} />}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  background: {
+    zIndex: -1,
+    backgroundColor: '#CDEAC0',
+  },
+  button: {
+    backgroundColor: '#A4AF91',
+    borderRadius: 10,
+    paddingVertical: 50,
+    paddingHorizontal: 50,
+    position: 'absolute',
+    bottom: 30,
+    alignSelf: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
+  },
+});
 
 export default CameraScreen;
