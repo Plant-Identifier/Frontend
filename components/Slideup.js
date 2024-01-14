@@ -1,9 +1,24 @@
+import {
+  SpaceMono_400Regular,
+  SpaceMono_400Regular_Italic,
+  SpaceMono_700Bold,
+  SpaceMono_700Bold_Italic,
+  useFonts,
+} from '@expo-google-fonts/space-mono';
 import React, { useEffect, useRef } from "react";
 import { Animated, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Slideup(props){
     const screenHeight = Dimensions.get('window').height;
     const translateY = useRef(new Animated.Value(screenHeight)).current;
+    const { width } = Dimensions.get('window');
+
+    const [fontsLoaded] = useFonts({
+      SpaceMono_400Regular,
+      SpaceMono_400Regular_Italic,
+      SpaceMono_700Bold,
+      SpaceMono_700Bold_Italic,
+    });
 
     const styles = StyleSheet.create({
         fullScreen: {
@@ -12,7 +27,7 @@ export default function Slideup(props){
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'white', // Or any color you want
+          backgroundColor: '#E2EEE1',
         },
       });
 
@@ -43,13 +58,40 @@ export default function Slideup(props){
               transform: [{ translateY }],
             },
           ]}>
-            <TouchableOpacity
-                onPress = {() => {props.setClicked(false)}}>
-                <Text>{props.name}</Text>
+            <View
+              style = {{
+                flex: 1,
+                flexDirection: 'column',
+                alignItems: 'center',
+                marginTop: 30,
+                left: (width - 350),
+                width: 300
+              }}>
+                <Text
+                  style = {{
+                    fontSize: 30,
+                    fontFamily: 'SpaceMono_700Bold'
+                  }}>{props.name}</Text>
                 <Image
-                  source={props.imgSrc}></Image>
-                <Text>{props.description}</Text>
-            </TouchableOpacity>
+                  source={props.imgSrc}
+                  style = {
+                    { width: 300,
+                      height: 300,
+                    }
+                  }></Image>
+                <Text
+                  style = {{
+                    textAlign: 'center',
+                    fontFamily: 'SpaceMono_700Bold'
+                  }}>{props.description}</Text>
+                <TouchableOpacity
+                  onPress = {() => {props.setClicked(false)}}>
+                  <Text
+                  style = {{
+                    marginTop: 30,
+                  }}>Back To FloraDex</Text>
+                </TouchableOpacity>
+                </View>
         </Animated.View>
     ) : <View></View>
 }

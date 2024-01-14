@@ -1,4 +1,4 @@
-import { default as React, default as React, useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Plant from '../components/Plant';
 import Slideup from '../components/Slideup';
@@ -14,7 +14,7 @@ const CollectionScreen = () => {
   async function fetchData(plant) {
     try {
       const response = await fetch(
-        `https://6f89-2605-8d80-682-2c53-649e-56fd-73f5-9971.ngrok-free.app/getInfo?Type=${plant}`
+        `https://2ce4-135-0-32-136.ngrok-free.app/getInfo?Type=${plant}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -34,11 +34,12 @@ const CollectionScreen = () => {
   const [touched, setTouched] = useState(false);
 
   const handlePress = async (plantName) => {
-    console.log(IMAGES[key])
     const search = plantName.split(/(?=[A-Z])/).join('%20');
+    console.log(search)
     await fetchData(search);
     scrollViewRef.current?.scrollTo({ y: 0, animated: true});
     setPlantName(plantName)
+    setPlantImg(IMAGES[plantName])
     setTouched(!touched);
   };
 

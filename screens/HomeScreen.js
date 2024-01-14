@@ -1,13 +1,13 @@
 import {
-    SpaceMono_400Regular,
-    SpaceMono_400Regular_Italic,
-    SpaceMono_700Bold,
-    SpaceMono_700Bold_Italic,
-    useFonts,
-  } from '@expo-google-fonts/space-mono';
-  import React, { useContext, useEffect, useState } from "react";
-  import { Image, StyleSheet, Text, View } from "react-native";
-  import PlantsContext from "../context/PlantsContext";
+  SpaceMono_400Regular,
+  SpaceMono_400Regular_Italic,
+  SpaceMono_700Bold,
+  SpaceMono_700Bold_Italic,
+  useFonts,
+} from '@expo-google-fonts/space-mono';
+import React, { useContext, useEffect, useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import PlantsContext from "../context/PlantsContext";
   
   const HomeScreen = ({ navigation }) => {
     const { plants, addPlant, removePlant } = useContext(PlantsContext)
@@ -60,15 +60,15 @@ import {
       backgroundColor: "#E3F6E1",
     },
     heading: {
-      fontSize: 28,
+      fontSize: 26,
       fontWeight: "bold",
-      marginBottom: 10,
+      marginBottom: 6,
       fontFamily: 'SpaceMono_700Bold',
     },
     subHeading: {
-      fontSize: 18,
+      fontSize: 16,
       marginBottom: 20,
-      fontFamily: 'SpaceMono_400Regular_Italic',
+      fontFamily: 'SpaceMono_400Regular',
     },
     profileImage: {
       width: 180,
@@ -78,7 +78,7 @@ import {
     },
     levelText: {
       fontSize: 16,
-      marginBottom: 10,
+      marginBottom: 6,
       fontFamily: 'SpaceMono_400Regular',
     },
     titleText: {
