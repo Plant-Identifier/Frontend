@@ -27,7 +27,7 @@ const WelcomeScreen = () => {
 
 
   const illustrations = [
-    { id: 1, source: require('../plant-images/Alfalfa.png') },
+    { id: 1, source: require('../plant-images/Fireweed.png') },
     { id: 2, source: require('../plant-images/PineappleWeed.png') },
     { id: 3, source: require('../plant-images/Sunflower.png') },
   ];
