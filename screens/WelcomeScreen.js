@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontFamily: 'SpaceMono_700Bold',
-    fontSize: 24,
+    fontSize: 20,
     marginBottom: 5,
     marginVertical: 150,
   },

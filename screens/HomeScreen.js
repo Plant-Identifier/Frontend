@@ -7,7 +7,7 @@ import {
 } from '@expo-google-fonts/space-mono';
 import React, { useContext, useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-
+import PlantsContext from "../context/PlantsContext";
 
 const HomeScreen = ({ navigation }) => {
   const { plants, addPlant, removePlant } = useContext(PlantsContext)
@@ -65,16 +65,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#CDEAC0",
   },
   heading: {
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
     fontFamily:'SpaceMono_700Bold',
   },
   subHeading: {
-    fontSize: 18,
-    color: "#888888",
+    fontSize: 16,
     marginBottom: 20,
-    fontFamily: 'SpaceMono_700Bold_Italic',
   },
 });
 
