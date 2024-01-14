@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions, Animated, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import {
-  useFonts,
   SpaceMono_400Regular,
   SpaceMono_400Regular_Italic,
   SpaceMono_700Bold,
   SpaceMono_700Bold_Italic,
+  useFonts,
 } from '@expo-google-fonts/space-mono';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { Animated, Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Lemon_400Regular } from '@expo-google-fonts/lemon';
 

@@ -17,12 +17,20 @@ export default function Slideup(props){
       });
 
     useEffect(() => {
+    if (props.clicked) {
         Animated.timing(translateY, {
             toValue: 0,
             duration: 500,
             useNativeDriver: true,
-          }).start();
-    }, [translateY])
+        }).start();
+    } else {
+        Animated.timing(translateY, {
+            toValue: screenHeight,
+            duration: 500,
+            useNativeDriver: true,
+        }).start();
+    }
+}, [props.clicked, screenHeight, translateY]);
 
     return props.clicked ? (
         <Animated.View style={[
@@ -33,7 +41,7 @@ export default function Slideup(props){
           ]}>
             <TouchableOpacity
                 onPress = {() => {props.setClicked(false)}}>
-                <Text>Testing</Text>
+                <Text>{props.description}</Text>
             </TouchableOpacity>
         </Animated.View>
     ) : <View></View>

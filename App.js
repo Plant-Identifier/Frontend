@@ -1,15 +1,16 @@
 // App.js
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
-import { Ionicons } from '@expo/vector-icons';
 
+import PlantsProvider from './context/PlantsProvider';
 import CameraScreen from './screens/CameraScreen';
 import CollectionScreen from './screens/CollectionScreen';
-import WelcomeScreen from './screens/WelcomeScreen'; // Import the WelcomeScreen component
 import HomeScreen from './screens/HomeScreen';
+import WelcomeScreen from './screens/WelcomeScreen'; // Import the WelcomeScreen component
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -74,8 +75,10 @@ const BottomTabNavigator = () => (
   export default function App() {
   
     return (
-      <NavigationContainer>
-        <MainStack />
-      </NavigationContainer>
+      <PlantsProvider>
+        <NavigationContainer>
+          <MainStack />
+        </NavigationContainer>
+      </PlantsProvider>
     );
   }

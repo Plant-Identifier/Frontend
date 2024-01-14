@@ -1,9 +1,12 @@
 import { Camera } from 'expo-camera';
-import React, { useRef, useState } from 'react';
+import * as FileSystem from 'expo-file-system';
+import React, { useContext, useRef, useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import PlantsContext from "../context/PlantsContext";
 
 const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
-
+    const { plants, addPlant, removePlant } = useContext(PlantsContext)
+    
     // Reference for the camera 
     const cameraRef = useRef(null);
     // Tracks state of captured picture 
@@ -17,11 +20,7 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
                 const photo = await cameraRef.current.takePictureAsync();
                 setPicture(photo);
                
-                // Saves photo locally (this url could be sent to the backend)
-                const localUri = photo.uri;
-                console.log(localUri);
-
-                // encode in base64 string or cloud s3 google bucket amazon aws
+                encodeImage(photo.uri)
 
                 // instead of alert, call backend & pull up slide up component to display info
                 Alert.alert("Success", "Picture taken successfully!");
@@ -30,6 +29,36 @@ const CameraComponent = ({ hasCameraPermission, onBackButtonPress }) => {
             }
         }
     };
+
+    const encodeImage = async (imageUri) => {
+        try {
+            const base64 = await FileSystem.readAsStringAsync(imageUri, { encoding: 'base64' });
+            const imageData = `data:image/jpg;base64,${base64}`;
+
+            sendBack(imageData);
+        } catch (error) {
+            console.error("Error encoding image", error);
+        }
+    };
+
+    const sendBack = async (encodedImage) => {
+        try {
+            const response = await fetch('https://6f89-2605-8d80-682-2c53-649e-56fd-73f5-9971.ngrok-free.app/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: encodedImage }),
+            });
+            alert("Processing Your Plant!")
+            const responseData = await response.text();
+            
+            console.log(responseData);
+            addPlant(responseData)
+        } catch (error) {
+            console.error("Error sending to backend", error);
+        }
+    }
 
     // If camera permission hasn't been accepted or denied yet (null), render nothing
     if (hasCameraPermission === null) {
