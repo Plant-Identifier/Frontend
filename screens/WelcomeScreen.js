@@ -14,7 +14,7 @@ const WelcomeScreen = () => {
   const scrollX = new Animated.Value(0);
 
   const goToHomeScreen = () => {
-    navigation.navigate('TabNavigator', { screen: 'HomeScreen' });
+    navigation.navigate('TabNavigator', { screen: 'FloraHome' });
   };
 
   const renderIllustration = ({ item }) => (
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
   getStartedButtonText: {
     color: 'white',
     fontSize: 18,
-    fontFamily: 'CuteFont', // Replace with the actual font family you want to use
   },
 });
 
