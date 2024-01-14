@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity,Text } from 'react-native';
 import Plant from "../components/Plant";
 import Slideup from '../components/Slideup';
 import { IMAGES } from '../constants/images';

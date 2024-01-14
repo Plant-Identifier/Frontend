@@ -19,7 +19,9 @@ setTimeout(SplashScreen.hideAsync, 5000)
 
 const MainStack = () => (
   <Stack.Navigator initialRouteName="Welcome" headerMode="none">
-    <Stack.Screen name="Welcome" component={WelcomeScreen} />
+    <Stack.Screen name="Welcome"
+      component={WelcomeScreen}
+      options={{ gestureEnabled: false }}/>
     <Stack.Screen name="TabNavigator" component={BottomTabNavigator} />
   </Stack.Navigator>
 );
@@ -35,7 +37,7 @@ const BottomTabNavigator = () => (
               <Ionicons
                 name={focused ? 'ios-camera' : 'ios-camera-outline'}
                 size={size}
-                color={color}
+                color={'#9CC29D'}
               />
             ),
           }}
@@ -48,7 +50,7 @@ const BottomTabNavigator = () => (
               <Ionicons
                 name={focused ? 'ios-home' : 'ios-home-outline'}
                 size={size}
-                color={color}
+                color={'#9CC29D'}
               />
             ),
           }}
@@ -61,7 +63,7 @@ const BottomTabNavigator = () => (
               <Ionicons
                 name={focused ? 'ios-albums' : 'ios-albums-outline'}
                 size={size}
-                color={color}
+                color={'#9CC29D'}
               />
             ),
           }}
