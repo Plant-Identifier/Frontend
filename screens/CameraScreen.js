@@ -1,6 +1,6 @@
 import { Camera } from 'expo-camera';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import CameraComponent from '../components/cameraComponent';
 
 const CameraScreen = () => {
@@ -24,9 +24,13 @@ const CameraScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.background} />
       {!cameraOpen && (
         <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-          <Text style={styles.buttonText}>Upload Plant</Text>
+          <Image
+            source={{ uri: 'https://static.vecteezy.com/system/resources/previews/012/450/943/original/vintage-8-bit-camera-pixel-art-illustration-of-camera-cross-stitch-pattern-vector.jpg' }}
+            style={styles.buttonImage}
+          />
         </TouchableOpacity>
       )}
       {cameraOpen && <CameraComponent hasCameraPermission={hasPermission} onBackButtonPress={handleBackButtonPress} />}
@@ -39,21 +43,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
+    ...StyleSheet.absoluteFillObject,
     zIndex: -1,
-    backgroundColor: '#CDEAC0',
+    backgroundColor: '#E3F6E1',
   },
   button: {
-    backgroundColor: '#A4AF91',
-    borderRadius: 10,
-    paddingVertical: 50,
-    paddingHorizontal: 50,
-    position: 'absolute',
-    bottom: 30,
+    position: 'center',
+    bottom: -300,
     alignSelf: 'center',
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 20,
+  buttonImage: {
+    width: 100, // Adjust the width as needed
+    height: 100, // Adjust the height as needed
   },
 });
 
