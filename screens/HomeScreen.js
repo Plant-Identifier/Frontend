@@ -1,6 +1,13 @@
+import {
+  SpaceMono_400Regular,
+  SpaceMono_400Regular_Italic,
+  SpaceMono_700Bold,
+  SpaceMono_700Bold_Italic,
+  useFonts,
+} from '@expo-google-fonts/space-mono';
 import React, { useContext, useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import PlantsContext from "../context/PlantsContext";
+
 
 const HomeScreen = ({ navigation }) => {
   const { plants, addPlant, removePlant } = useContext(PlantsContext)
@@ -22,7 +29,16 @@ const HomeScreen = ({ navigation }) => {
     }
   }, [])
 
-  return (
+    const [fontsLoaded] = useFonts({
+        SpaceMono_400Regular,
+        SpaceMono_400Regular_Italic,
+        SpaceMono_700Bold,
+        SpaceMono_700Bold_Italic,
+      });
+    
+      if (!fontsLoaded) return  <Text style={styles.welcomeText}>Welcome to WhatTheFlora!</Text>
+  
+      return (
     <View style={styles.container}>
       <Text style={styles.heading}>Welcome to Your Home</Text>
       <Text style={styles.subHeading}>Enjoy the Green Experience!</Text>
@@ -46,17 +62,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#CDEAC0",
   },
   heading: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "bold",
     marginBottom: 10,
+    fontFamily:'SpaceMono_700Bold',
   },
   subHeading: {
     fontSize: 18,
     color: "#888888",
     marginBottom: 20,
+    fontFamily: 'SpaceMono_700Bold_Italic',
   },
 });
 
